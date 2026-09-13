@@ -113,11 +113,10 @@ class GitPropertyNamesTest {
     @DisplayName("getProperty() throws on null or blank/invalid property names")
     void testGetPropertyInvalidInputs(String invalidInput) {
         if (invalidInput == null) {
-            assertThatThrownBy(() -> GitPropertyNames.getProperty(null))
-                    .isInstanceOf(NullPointerException.class);
+            //noinspection DataFlowIssue - Deliberate for testing purposes
+            assertThatThrownBy(() -> GitPropertyNames.getProperty(null)).isInstanceOf(NullPointerException.class);
         } else {
-            assertThatThrownBy(() -> GitPropertyNames.getProperty(invalidInput))
-                    .isInstanceOf(IllegalArgumentException.class);
+            assertThatThrownBy(() -> GitPropertyNames.getProperty(invalidInput)).isInstanceOf(IllegalArgumentException.class);
         }
     }
 
@@ -125,8 +124,7 @@ class GitPropertyNamesTest {
     @ValueSource(strings = {"non.existent.property", "git.unknown", "unknown", "12345"})
     @DisplayName("getProperty() throws IllegalArgumentException for non-existent properties")
     void testGetPropertyNonExistent(String unknownProperty) {
-        assertThatThrownBy(() -> GitPropertyNames.getProperty(unknownProperty))
-                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> GitPropertyNames.getProperty(unknownProperty)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @ParameterizedTest

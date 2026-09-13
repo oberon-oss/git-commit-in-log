@@ -26,11 +26,10 @@ public class AbstractGitProperty<T> implements GitProperty<T> {
      * Constructs an {@code AbstractGitProperty} with the specified Git property name and converter.
      *
      * @param gitPropertyName The name of the Git property.
-     * @param converter       The converter used to handle the conversion of the associated type.
      *
      * @since 1.0.0
      */
-    protected AbstractGitProperty(GitPropertyNames gitPropertyName ) {
+    protected AbstractGitProperty(GitPropertyNames gitPropertyName) {
         this.gitPropertyName = gitPropertyName;
     }
 
@@ -50,13 +49,13 @@ public class AbstractGitProperty<T> implements GitProperty<T> {
     }
 
     /**
-     * Loads Git properties from the given input stream and maps them to their corresponding {@link GitPropertyNames} keys.
-     * Missing or blank property entries are populated with {@link #NOT_FOUND}.
+     * Loads Git properties from the given input stream and maps them to their corresponding {@link GitPropertyNames} keys. Missing or blank property entries
+     * are populated with {@link #NOT_FOUND}.
      *
      * @param inputStream The input stream from which the Git properties are to be loaded. Cannot be null.
      *
-     * @return An unmodifiable map where the keys are {@link GitPropertyNames} representing the property names and the values are the associated property
-     *         values (or {@link #NOT_FOUND} for missing/blank entries).
+     * @return An unmodifiable map where the keys are {@link GitPropertyNames} representing the property names and the values are the associated property values
+     *         (or {@link #NOT_FOUND} for missing/blank entries).
      *
      * @throws IOException If an I/O error occurs while reading from the input stream.
      * @since 1.0.0

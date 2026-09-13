@@ -76,6 +76,7 @@ class GitCommitMdcTest {
     @Test
     @DisplayName("loadProperties() throws NullPointerException when properties map is null")
     void testLoadPropertiesNullMap() {
+        //noinspection DataFlowIssue - Deliberate null value for testing purposes
         assertThatThrownBy(() -> GitCommitMdc.loadProperties((Map<GitPropertyNames, Object>) null))
                 .isInstanceOf(NullPointerException.class);
     }
@@ -130,7 +131,7 @@ class GitCommitMdcTest {
             logger.info("Application event with Git commit MDC context");
 
             assertThat(listAppender.list).hasSize(1);
-            ILoggingEvent event = listAppender.list.get(0);
+            ILoggingEvent event = listAppender.list.getFirst();
             assertThat(event.getMDCPropertyMap())
                     .containsEntry(GIT_COMMIT_ID_ABBREV.toString(), "f452bda")
                     .containsEntry(GIT_BRANCH.toString(), "main");
