@@ -2,6 +2,10 @@ package eu.oberon.oss.tools.logging.gitid;
 
 import org.slf4j.MDC;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Map;
+
 /**
  * Utility class to populate and clear the Git commit ID in SLF4J's {@link MDC}.
  *
@@ -10,46 +14,18 @@ import org.slf4j.MDC;
  */
 public final class GitCommitMdc {
 
-    public static final String DEFAULT_MDC_KEY = "gitCommit";
-
     private GitCommitMdc() {
         // utility class
     }
 
-    /**
-     * Put the resolved git commit ID into MDC under the default key ({@code "gitCommit"}).
-     *
-     * @return the resolved git commit ID that was placed in MDC
-     */
-    public static String put() {
-        return put(DEFAULT_MDC_KEY);
+    public static void loadProperties(Map<GitPropertyNames, Object> properties) {
+        for (Map.Entry<GitPropertyNames, Object> entry : properties.entrySet()) {
+            Object value = entry.getValue();
+            MDC.put(entry.getKey().toString(), value == null || value.toString().isBlank() ? AbstractGitProperty.NOT_FOUND : value.toString());
+        }
     }
 
-    /**
-     * Put the resolved git commit ID into MDC under the specified key.
-     *
-     * @param key the MDC key to use
-     * @return the resolved git commit ID that was placed in MDC
-     */
-    public static String put(String key) {
-        String commit = GitCommitFileResolver.resolve();
-        MDC.put(key, commit);
-        return commit;
-    }
-
-    /**
-     * Remove the git commit ID from MDC under the default key ({@code "gitCommit"}).
-     */
-    public static void remove() {
-        remove(DEFAULT_MDC_KEY);
-    }
-
-    /**
-     * Remove the git commit ID from MDC under the specified key.
-     *
-     * @param key the MDC key to remove
-     */
-    public static void remove(String key) {
-        MDC.remove(key);
+    public static void loadProperties(InputStream inputStream) throws IOException {
+        loadProperties(AbstractGitProperty.loadGitProperties(inputStream));
     }
 }

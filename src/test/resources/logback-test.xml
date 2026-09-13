@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!--
+      Logback configuration demonstrating the usage of SLF4J MDC properties
+      stored by GitCommitMdc (eu.oberon.oss.tools.logging.gitid.GitCommitMdc).
+
+      When GitCommitMdc.loadProperties(...) is invoked, Git metadata properties
+      are placed into the SLF4J MDC using the names defined in GitPropertyNames.
+
+      Individual MDC properties can be accessed in pattern strings using %X{KEY}:
+        - %X{GIT_COMMIT_ID_ABBREV}       : Abbreviated Git commit hash (e.g., f452bda)
+        - %X{GIT_COMMIT_ID_FULL}         : Full Git commit SHA
+        - %X{GIT_BRANCH}                 : Current Git branch (e.g., main)
+        - %X{GIT_DIRTY}                  : Whether the working tree is dirty (true/false)
+        - %X{GIT_BUILD_VERSION}          : Build version
+        - %X{GIT_BUILD_TIME}             : Build timestamp
+        - %X{GIT_BUILD_USER_NAME}        : Build user name
+        - %X{GIT_BUILD_USER_EMAIL}       : Build user email
+        - %X{GIT_BUILD_HOST}             : Build host machine
+        - %X{GIT_COMMIT_TIME}            : Commit timestamp
+        - %X{GIT_COMMIT_USER_NAME}       : Commit author name
+        - %X{GIT_COMMIT_USER_EMAIL}      : Commit author email
+        - %X{GIT_COMMIT_MESSAGE_SHORT}   : Short commit message
+        - %X{GIT_COMMIT_MESSAGE_FULL}    : Full commit message
+        - %X{GIT_TOTAL_COMMIT_COUNT}     : Total commit count
+        - %X{GIT_REMOTE_ORIGIN_URL}      : Remote origin URL
+        - %X                             : Outputs all MDC entries as [key=value, ...]
+
+      Example pattern with default value fallbacks:
+        [%X{GIT_COMMIT_ID_ABBREV:-unknown}:%X{GIT_BRANCH:-unknown}]
+    -->
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} [%X{GIT_COMMIT_ID_ABBREV:-unknown}:%X{GIT_BRANCH:-unknown}] - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+</configuration>
