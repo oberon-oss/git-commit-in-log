@@ -14,6 +14,8 @@
     <artifactId>git-commit-in-log</artifactId>
     <version>1.0.0</version>
 
+    <name>Incorporate git commit information into log messages</name>
+
     <dependencies>
         <dependency>
             <groupId>org.slf4j</groupId>

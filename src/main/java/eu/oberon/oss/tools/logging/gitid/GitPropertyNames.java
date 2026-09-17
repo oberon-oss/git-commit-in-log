@@ -15,31 +15,161 @@ import java.util.function.Function;
  * @since 1.0.0
  */
 public enum GitPropertyNames {
+    /**
+     * Current Git branch name.
+     *
+     * @since 1.0.0
+     */
     GIT_BRANCH,
+    /**
+     * Name of the host on which the build was executed.
+     *
+     * @since 1.0.0
+     */
     GIT_BUILD_HOST,
+    /**
+     * Timestamp of the build.
+     *
+     * @since 1.0.0
+     */
     GIT_BUILD_TIME(new LocalDateTimeConverter()),
+    /**
+     * Email of the user who executed the build.
+     *
+     * @since 1.0.0
+     */
     GIT_BUILD_USER_EMAIL,
+    /**
+     * Name of the user who executed the build.
+     *
+     * @since 1.0.0
+     */
     GIT_BUILD_USER_NAME,
+    /**
+     * Version of the build.
+     *
+     * @since 1.0.0
+     */
     GIT_BUILD_VERSION,
+    /**
+     * Number of commits since the closest tag.
+     *
+     * @since 1.0.0
+     */
     GIT_CLOSEST_TAG_COMMIT_COUNT(new IntegerConverter()),
+    /**
+     * Name of the closest tag.
+     *
+     * @since 1.0.0
+     */
     GIT_CLOSEST_TAG_NAME,
+    /**
+     * Timestamp of the commit authoring.
+     *
+     * @since 1.0.0
+     */
     GIT_COMMIT_AUTHOR_TIME(new LocalDateTimeConverter()),
+    /**
+     * Timestamp when the commit was committed.
+     *
+     * @since 1.0.0
+     */
     GIT_COMMIT_COMMITTER_TIME(new LocalDateTimeConverter()),
+    /**
+     * Abbreviated commit ID.
+     *
+     * @since 1.0.0
+     */
     GIT_COMMIT_ID_ABBREV,
+    /**
+     * Output of {@code git describe} for the commit.
+     *
+     * @since 1.0.0
+     */
     GIT_COMMIT_ID_DESCRIBE,
+    /**
+     * Short output of {@code git describe} for the commit.
+     *
+     * @since 1.0.0
+     */
     GIT_COMMIT_ID_DESCRIBE_SHORT,
+    /**
+     * Full commit ID.
+     *
+     * @since 1.0.0
+     */
     GIT_COMMIT_ID_FULL,
+    /**
+     * Full commit message.
+     *
+     * @since 1.0.0
+     */
     GIT_COMMIT_MESSAGE_FULL,
+    /**
+     * Short commit message.
+     *
+     * @since 1.0.0
+     */
     GIT_COMMIT_MESSAGE_SHORT,
+    /**
+     * Timestamp of the commit.
+     *
+     * @since 1.0.0
+     */
     GIT_COMMIT_TIME(new LocalDateTimeConverter()),
+    /**
+     * Email of the commit author.
+     *
+     * @since 1.0.0
+     */
     GIT_COMMIT_USER_EMAIL,
+    /**
+     * Name of the commit author.
+     *
+     * @since 1.0.0
+     */
     GIT_COMMIT_USER_NAME,
+    /**
+     * Whether the Git working tree has uncommitted changes.
+     *
+     * @since 1.0.0
+     */
     GIT_DIRTY(new BooleanConverter()),
+    /**
+     * Number of commits the local branch is ahead of the remote.
+     *
+     * @since 1.0.0
+     */
     GIT_LOCAL_BRANCH_AHEAD(new IntegerConverter()),
+    /**
+     * Number of commits the local branch is behind the remote.
+     *
+     * @since 1.0.0
+     */
     GIT_LOCAL_BRANCH_BEHIND(new IntegerConverter()),
+    /**
+     * URL of the remote origin repository.
+     *
+     * @since 1.0.0
+     */
     GIT_REMOTE_ORIGIN_URL,
+    /**
+     * Current Git tag name.
+     *
+     * @since 1.0.0
+     */
     GIT_TAG,
+    /**
+     * Tags pointing to the current commit.
+     *
+     * @since 1.0.0
+     */
     GIT_TAGS,
+    /**
+     * Total number of commits.
+     *
+     * @since 1.0.0
+     */
     GIT_TOTAL_COMMIT_COUNT(new IntegerConverter());
 
     private final Converter<?> datatype;
