@@ -160,9 +160,7 @@ void example() {
         String branch = (String) properties.get(GitPropertyNames.GIT_BRANCH);
 
 // 2. Put into MDC
-        GitCommitMdc.
-
-                loadProperties(properties);
+        GitCommitMdc.loadProperties(properties);
     }
 }
 ```
