@@ -12,7 +12,7 @@
 
     <groupId>eu.oberon-oss.tools</groupId>
     <artifactId>git-commit-in-log</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
 
     <dependencies>
         <dependency>
