@@ -9,7 +9,9 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.Map;
+import java.util.Properties;
 import java.util.stream.Stream;
 
 import static eu.oberon.oss.tools.logging.gitid.AbstractGitProperty.NOT_FOUND;
@@ -19,6 +21,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mockConstruction;
+import static org.mockito.Mockito.when;
 
 class AbstractGitPropertyTest {
 
@@ -159,6 +163,23 @@ class AbstractGitPropertyTest {
             assertEquals(NOT_FOUND, properties.get(GIT_COMMIT_USER_NAME));
             assertEquals(NOT_FOUND, properties.get(GIT_COMMIT_ID_FULL));
             assertEquals(NOT_FOUND, properties.get(GIT_BUILD_VERSION));
+        }
+    }
+
+    @Test
+    void testLoadGitPropertiesWithNullPropertyValue() throws IOException {
+        try (var _ = mockConstruction(Properties.class, (mock, _) -> {
+            Map<Object, Object> entryMap = Collections.singletonMap("git.branch", null);
+            when(mock.entrySet()).thenReturn(entryMap.entrySet());
+        })) {
+            try (InputStream inputStream = new ByteArrayInputStream(new byte[0])) {
+                Map<GitPropertyNames, Object> properties = AbstractGitProperty.loadGitProperties(inputStream);
+
+                assertThat(properties)
+                        .isNotNull()
+                        .hasSize(26);
+                assertEquals(NOT_FOUND, properties.get(GIT_BRANCH));
+            }
         }
     }
 }

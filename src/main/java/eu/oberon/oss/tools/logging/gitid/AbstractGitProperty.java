@@ -17,7 +17,6 @@ import static eu.oberon.oss.tools.logging.gitid.GitPropertyNames.getProperty;
  * @since 1.0.0
  */
 public class AbstractGitProperty<T> implements GitProperty<T> {
-    public static final String NOT_FOUND = GitProperty.NOT_FOUND;
 
     private T value;
     private final GitPropertyNames gitPropertyName;
