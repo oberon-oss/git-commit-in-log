@@ -21,7 +21,7 @@ public final class GitCommitMdc {
     public static void loadProperties(Map<GitPropertyNames, Object> properties) {
         for (Map.Entry<GitPropertyNames, Object> entry : properties.entrySet()) {
             Object value = entry.getValue();
-            MDC.put(entry.getKey().toString(), value == null || value.toString().isBlank() ? AbstractGitProperty.NOT_FOUND : value.toString());
+            MDC.put(entry.getKey().toString(), value == null || value.toString().isBlank() ? GitProperty.NOT_FOUND : value.toString());
         }
     }
 
