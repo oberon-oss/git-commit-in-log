@@ -99,7 +99,7 @@
         </repository>
 
         <repository>
-            <id>nexus-repository</id>
+            <id>nexus-releases</id>
             <name>Nexus Release Repository</name>
             <url>https://nexus.oberon-oss.eu/repository/maven-releases/</url>
             <releases>
