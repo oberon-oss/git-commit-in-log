@@ -22,23 +22,9 @@ jobs:
                   java-version: '25'
                   distribution: 'temurin'
                   cache: 'maven'
-
-            - name: Configure Maven settings.xml
-              run: |
-                  mkdir -p ~/.m2
-                  cat << 'EOF' > ~/.m2/settings.xml
-                  <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
-                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                            xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 https://maven.apache.org/xsd/settings-1.0.0.xsd">
-                    <servers>
-                      <server>
-                        <id>nexus-repository</id>
-                        <username>${env.NEXUS_USERNAME}</username>
-                        <password>${env.NEXUS_PASSWORD}</password>
-                      </server>
-                    </servers>
-                  </settings>
-                  EOF
+                  server-id: nexus-repository
+                  server-username: NEXUS_USERNAME
+                  server-password: NEXUS_PASSWORD
 
             - name: Build and Deploy to Nexus
               run: mvn clean deploy -DskipTests=false
