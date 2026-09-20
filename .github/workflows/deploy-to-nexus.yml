@@ -37,9 +37,7 @@ jobs:
               env:
                   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-              run: >-
-                  mvn test jacoco:report org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
-                  -Dsonar.qualitygate.wait=true -Dsonar.projectKey=oberon-oss_git-commit-in-log
+              run: mvn test jacoco:report org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.qualitygate.wait=true -Dsonar.projectKey=oberon-oss_git-commit-in-log
 
     deploy:
         name: 3. Deploy to Nexus Repository
