@@ -16,6 +16,9 @@ on:
 jobs:
     deploy:
         runs-on: ubuntu-latest
+        env:
+            NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
+            NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
         steps:
             - name: Checkout Source Code
               uses: actions/checkout@v4
@@ -30,9 +33,6 @@ jobs:
                   server-id: nexus-repository
                   server-username: NEXUS_USERNAME
                   server-password: NEXUS_PASSWORD
-              env:
-                  NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
-                  NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
 
             - name: Build and Deploy to Nexus
               run: mvn clean deploy -DskipTests=false
