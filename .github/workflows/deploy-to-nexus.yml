@@ -1,0 +1,38 @@
+name: Deploy to Nexus Repository
+
+on:
+    push:
+        branches:
+            - main
+            - 'feature/**'
+            - 'bug/**'
+            - 'fix/**'
+            - 'hotfix/**'
+    pull_request:
+        branches:
+            - main
+    workflow_dispatch:
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout Source Code
+              uses: actions/checkout@v4
+
+            - name: Set up JDK 25
+              uses: actions/setup-java@v4
+              with:
+                  java-version: '25'
+                  distribution: 'temurin'
+                  cache: 'maven'
+                  # Configures server credentials in ~/.m2/settings.xml
+                  server-id: nexus-repository
+                  server-username: NEXUS_USERNAME
+                  server-password: NEXUS_PASSWORD
+              env:
+                  NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
+                  NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
+
+            - name: Build and Deploy to Nexus
+              run: mvn clean deploy -DskipTests=false
