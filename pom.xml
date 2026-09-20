@@ -12,7 +12,7 @@
 
     <groupId>eu.oberon-oss.tools</groupId>
     <artifactId>git-commit-in-log</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.1</version>
 
     <name>Incorporate git commit information into log messages</name>
     <description>Incorporate git commit information into log messages</description>
@@ -111,6 +111,7 @@
                 <enabled>true</enabled>
             </snapshots>
         </repository>
+
         <repository>
             <id>central-releases</id>
             <url>https://central.sonatype.com/repository/maven-releases/</url>
@@ -133,6 +134,7 @@
                 <enabled>false</enabled>
             </snapshots>
         </repository>
+
         <repository>
             <id>nexus-snapshots</id>
             <url>https://nexus.oberon-oss.eu/repository/maven-snapshots/</url>
@@ -143,6 +145,7 @@
                 <enabled>true</enabled>
             </snapshots>
         </repository>
+
     </repositories>
 
 </project>
