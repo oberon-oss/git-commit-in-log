@@ -7,7 +7,7 @@
     <parent>
         <groupId>eu.oberon-oss</groupId>
         <artifactId>boms</artifactId>
-        <version>3.25.6</version>
+        <version>3.25.8</version>
     </parent>
 
     <groupId>eu.oberon-oss.tools</groupId>
@@ -65,64 +65,11 @@
                     <commitIdGenerationMode>full</commitIdGenerationMode>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.15</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>prepare-agent</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>report</id>
-                        <phase>test</phase>
-                        <goals>
-                            <goal>report</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+
         </plugins>
     </build>
 
-    <distributionManagement>
-        <repository>
-            <id>nexus-repository</id>
-            <name>Nexus Release Repository</name>
-            <url>https://nexus.oberon-oss.eu/repository/maven-releases/</url>
-        </repository>
-        <snapshotRepository>
-            <id>nexus-repository</id>
-            <name>Nexus Snapshot Repository</name>
-            <url>https://nexus.oberon-oss.eu/repository/maven-snapshots/</url>
-        </snapshotRepository>
-    </distributionManagement>
-
     <repositories>
-        <repository>
-            <id>central-snapshots</id>
-            <url>https://central.sonatype.com/repository/maven-snapshots/</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-
-        <repository>
-            <id>central-releases</id>
-            <url>https://central.sonatype.com/repository/maven-releases/</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-
         <repository>
             <id>nexus-releases</id>
             <name>Nexus Release Repository</name>
@@ -145,7 +92,6 @@
                 <enabled>true</enabled>
             </snapshots>
         </repository>
-
     </repositories>
 
 </project>
