@@ -20,54 +20,54 @@ jobs:
             NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
             NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
         steps:
-            - name: Checkout Source Code
-              uses: actions/checkout@v4
+            -   name: Checkout Source Code
+                uses: actions/checkout@v4
 
-            - name: Set up JDK 25
-              uses: actions/setup-java@v4
-              with:
-                  java-version: '25'
-                  distribution: 'temurin'
-                  cache: 'maven'
+            -   name: Set up JDK 25
+                uses: actions/setup-java@v4
+                with:
+                    java-version: '25'
+                    distribution: 'temurin'
+                    cache: 'maven'
 
-            - name: Configure Maven settings.xml
-              run: |
-                  mkdir -p ~/.m2
-                  cat << EOF > ~/.m2/settings.xml
-                  <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
-                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                            xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 https://maven.apache.org/xsd/settings-1.0.0.xsd">
-                    <servers>
-                      <server>
-                        <id>nexus-repository</id>
-                        <username>${env.NEXUS_USERNAME}</username>
-                        <password>${env.NEXUS_PASSWORD}</password>
-                      </server>
-                    </servers>
-                    <profiles>
-                      <profile>
-                        <id>nexus-profile</id>
-                        <repositories>
-                          <repository>
-                            <id>nexus-repository</id>
-                            <url>https://nexus.oberon-oss.eu/repository/maven-releases/</url>
-                            <releases><enabled>true</enabled></releases>
-                            <snapshots><enabled>false</enabled></snapshots>
-                          </repository>
-                          <repository>
-                            <id>nexus-snapshots</id>
-                            <url>https://nexus.oberon-oss.eu/repository/maven-snapshots/</url>
-                            <releases><enabled>false</enabled></releases>
-                            <snapshots><enabled>true</enabled></snapshots>
-                          </repository>
-                        </repositories>
-                      </profile>
-                    </profiles>
-                    <activeProfiles>
-                      <activeProfile>nexus-profile</activeProfile>
-                    </activeProfiles>
-                  </settings>
-                  EOF
+            -   name: Configure Maven settings.xml
+                run: |
+                    mkdir -p ~/.m2
+                    cat << EOF > ~/.m2/settings.xml
+                    <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+                              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                              xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 https://maven.apache.org/xsd/settings-1.0.0.xsd">
+                      <servers>
+                        <server>
+                          <id>nexus-repository</id>
+                          <username>${NEXUS_USERNAME}</username>
+                          <password>${NEXUS_PASSWORD}</password>
+                        </server>
+                      </servers>
+                      <profiles>
+                        <profile>
+                          <id>nexus-profile</id>
+                          <repositories>
+                            <repository>
+                              <id>nexus-repository</id>
+                              <url>https://nexus.oberon-oss.eu/repository/maven-releases/</url>
+                              <releases><enabled>true</enabled></releases>
+                              <snapshots><enabled>false</enabled></snapshots>
+                            </repository>
+                            <repository>
+                              <id>nexus-snapshots</id>
+                              <url>https://nexus.oberon-oss.eu/repository/maven-snapshots/</url>
+                              <releases><enabled>false</enabled></releases>
+                              <snapshots><enabled>true</enabled></snapshots>
+                            </repository>
+                          </repositories>
+                        </profile>
+                      </profiles>
+                      <activeProfiles>
+                        <activeProfile>nexus-profile</activeProfile>
+                      </activeProfiles>
+                    </settings>
+                    EOF
 
-            - name: Build and Deploy to Nexus
-              run: mvn clean deploy -DskipTests=false
+            -   name: Build and Deploy to Nexus
+                run: mvn clean deploy -DskipTests=false
