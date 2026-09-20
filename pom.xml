@@ -12,7 +12,7 @@
 
     <groupId>eu.oberon-oss.tools</groupId>
     <artifactId>git-commit-in-log</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1-SNAPSHOT </version>
 
     <name>Incorporate git commit information into log messages</name>
     <description>Incorporate git commit information into log messages</description>
