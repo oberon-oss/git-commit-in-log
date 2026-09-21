@@ -79,7 +79,12 @@ jobs:
                   java-version: '25'
                   distribution: 'temurin'
                   cache: 'maven'
-            - name: Run Tests, JaCoCo and SonarCloud
+            - name: Run Tests (Release Tag)
+              if: needs.compile.outputs.is_release == 'true'
+              run: mvn test
+
+            - name: Run Tests, JaCoCo and SonarCloud (Branch / Snapshot)
+              if: needs.compile.outputs.is_release != 'true'
               env:
                   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
