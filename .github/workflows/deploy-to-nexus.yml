@@ -37,7 +37,7 @@ jobs:
               env:
                   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-              run: mvn test jacoco:report org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.qualitygate.wait=true -Dsonar.projectKey=oberon-oss_git-commit-in-log
+              run: mvn test jacoco:report org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.qualitygate.wait=true
 
     deploy:
         name: 3. Deploy to Nexus Repository
@@ -57,4 +57,4 @@ jobs:
                   server-username: NEXUS_USERNAME
                   server-password: NEXUS_PASSWORD
             - name: Publish Artifacts to Nexus
-              run: mvn deploy -Pgenerate-javadoc-and-source -DskipTests=true
+              run: mvn deploy -Pgenerate-javadoc-and-source,activate-oberon-nexus -DskipTests=true
