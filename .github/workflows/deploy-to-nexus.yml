@@ -10,5 +10,8 @@ on:
 
 jobs:
     pipeline:
-        uses: oberon-oss/github-workflows/.github/workflows/maven-pipeline.yml@v2
-        secrets: inherit
+        uses: oberon-oss/github-workflows/.github/workflows/maven-pipeline.yml@b4c069055363c95e04ae30b12ff68a03fd3be148
+        secrets:
+            SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+            NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
+            NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
