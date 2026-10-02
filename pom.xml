@@ -6,8 +6,8 @@
 
     <parent>
         <groupId>eu.oberon-oss</groupId>
-        <artifactId>boms</artifactId>
-        <version>3.25.12</version>
+        <artifactId>project-settings-parent</artifactId>
+        <version>4.25.3</version>
     </parent>
 
     <groupId>eu.oberon-oss.tools</groupId>
@@ -34,16 +34,34 @@
         </dependency>
 
         <dependency>
-            <groupId>eu.oberon-oss.tools</groupId>
-            <artifactId>converters</artifactId>
-            <version>1.2.0</version>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>1.6.3</version>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- other dependencies -->
+        <dependency>
+            <groupId>eu.oberon-oss.tools</groupId>
+            <artifactId>converters</artifactId>
+            <version>1.2.0</version>
         </dependency>
 
     </dependencies>
@@ -72,5 +90,4 @@
             </snapshots>
         </repository>
     </repositories>
-
 </project>
