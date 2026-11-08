@@ -76,7 +76,7 @@ Add the dependency to your project's `pom.xml`:
 <dependency>
     <groupId>eu.oberon-oss.tools</groupId>
     <artifactId>git-commit-in-log</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>${git-commit-in-log.version}</version>
 </dependency>
 ```
 
