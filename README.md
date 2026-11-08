@@ -16,6 +16,8 @@
 [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=oberon-oss_git-commit-in-log&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=oberon-oss_git-commit-in-log)
 
 ---
+## Latest Release: [![Latest Release](https://img.shields.io/github/v/release/oberon-oss/git-commit-in-log?logo=github&style=flat-square)](https://github.com/oberon-oss/git-commit-in-log/releases/latest)
+---
 
 **`git-commit-in-log`** is a lightweight Java library that loads Git repository and build metadata (such as commit hashes, branch names, build timestamps, and
 dirty flags) from a `git.properties` file generated at build time and exposes them through SLF4J's **Mapped Diagnostic Context (MDC)**.
@@ -74,7 +76,7 @@ Add the dependency to your project's `pom.xml`:
 <dependency>
     <groupId>eu.oberon-oss.tools</groupId>
     <artifactId>git-commit-in-log</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>${git-commit-in-log.version}</version>
 </dependency>
 ```
 
